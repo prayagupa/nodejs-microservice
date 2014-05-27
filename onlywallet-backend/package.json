@@ -1,0 +1,24 @@
+{
+  "name": "only-wallet",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+
+  "dependencies": {
+    "express": "3.4.7",
+    "jade": "*",
+    "mongodb": ">= 0.9.6-7",
+    "mongoose" : ">= 3.6",
+    "ejs":"*",
+    "braintree": "*",
+
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-qunit": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.3.3",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-concat": "~0.3.0"
+  }
+}
