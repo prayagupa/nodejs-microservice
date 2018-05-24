@@ -3,12 +3,15 @@ onlywallet-backend
 
 application created using `express onlywallet-backend`
 
+```
 |
 |
 |  mongo
 |
+```
 
 Download deps
+-------------
 
 ```
 $ npm install -d
@@ -16,11 +19,13 @@ $ npm install -d
 
 
 Run app
+-------
 
 ```
 $ node app.js
 ```
 
 References
+-----------
 
 https://www.braintreepayments.com/docs/node/guide/getting_paid

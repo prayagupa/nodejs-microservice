@@ -11,8 +11,8 @@ var path      = require('path');
 
 var app       = express();
 
-var Mongoose  = require('mongoose');
-var db        = Mongoose.createConnection('localhost', 'onlywallet');
+//var Mongoose  = require('mongoose');
+//var db        = Mongoose.createConnection('localhost', 'onlywallet');
 var util      = require('util');
 var braintree = require("braintree");
 
