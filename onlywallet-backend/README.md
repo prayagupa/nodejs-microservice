@@ -25,6 +25,13 @@ Run app
 $ node app.js
 ```
 
+[with kubectl](https://kubernetes.io/docs/tutorials/hello-minikube/)
+------------
+
+```
+minikube start --vm-driver=xhyve
+```
+
 References
 -----------
 
