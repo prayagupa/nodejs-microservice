@@ -2,7 +2,7 @@ setup kubectl
 -------------
 
 ```bash
-$ minikube start --vm-driver=xhyve
+minikube start --vm-driver=xhyve
 Starting local Kubernetes v1.10.0 cluster...
 Starting VM...
 WARNING: The xhyve driver is now deprecated and support for it will be removed in a future release.
@@ -30,7 +30,7 @@ kubectl config use-context minikube
 ```
 
 ```bash
-$ kubectl cluster-info
+kubectl cluster-info
 Kubernetes master is running at https://192.168.64.3:8443
 KubeDNS is running at https://192.168.64.3:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 
@@ -46,11 +46,28 @@ kubectl deployment
 
 A Kubernetes Pod is a group of one or more Containers, tied together for the purposes of administration and networking. The Pod in this tutorial has only one Container.
 
+```bash
+docker build -t onlywallet-api:v1 .
+kubectl run onlywallet --image=onlywallet-api:v1 --port=8080
+
+kubectl get deployments
+kubectl get pods
+kubectl get events
+kubectl config view
+```
 
 kubectl service
 ---------------
 
 By default, the Pod is only accessible by its internal IP address within the Kubernetes cluster. To make the hello-node Container accessible from outside the Kubernetes virtual network, you have to expose the Pod as a Kubernetes Service.
+
+```bash
+kubectl expose deployment onlywallet-api --type=LoadBalancer
+kubectl get services
+minikube service onlywallet-api
+
+kubectl logs <POD-NAME=onlywallet-api>
+```
 
 ![](onlywallet_kubectl_services.png)
 
