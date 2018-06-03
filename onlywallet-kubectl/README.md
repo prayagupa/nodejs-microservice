@@ -48,13 +48,37 @@ A Kubernetes Pod is a group of one or more Containers, tied together for the pur
 
 ```bash
 docker build -t onlywallet-api:v1 .
-kubectl run onlywallet --image=onlywallet-api:v1 --port=8080
+kubectl run onlywallet-pod --image=onlywallet-api:v1 --port=8080
 
 kubectl get deployments
 kubectl get pods
 kubectl get events
-kubectl config view
 ```
+
+```bash
+kubectl config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /Users/a1353612/.minikube/ca.crt
+    server: https://192.168.64.3:8443
+  name: minikube
+contexts:
+- context:
+    cluster: minikube
+    user: minikube
+  name: minikube
+current-context: minikube
+kind: Config
+preferences: {}
+users:
+- name: minikube
+  user:
+    client-certificate: /Users/a1353612/.minikube/client.crt
+    client-key: /Users/a1353612/.minikube/client.key
+```
+
+![](onlywallet_pods.png)
 
 kubectl service
 ---------------
@@ -62,11 +86,11 @@ kubectl service
 By default, the Pod is only accessible by its internal IP address within the Kubernetes cluster. To make the hello-node Container accessible from outside the Kubernetes virtual network, you have to expose the Pod as a Kubernetes Service.
 
 ```bash
-kubectl expose deployment onlywallet-api --type=LoadBalancer
+kubectl expose deployment onlywallet-pod --type=LoadBalancer
 kubectl get services
-minikube service onlywallet-api
+minikube service onlywallet-pod
 
-kubectl logs <POD-NAME=onlywallet-api>
+kubectl logs <POD-NAME=onlywallet-pod>
 ```
 
 ![](onlywallet_kubectl_services.png)
