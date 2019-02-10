@@ -8,4 +8,6 @@ NAME          STATUS    AGE
 default       Active    7h
 kube-public   Active    7h
 kube-system   Active    7h
+
+kubectl apply -f aws-auth-cm.yaml
 ```
