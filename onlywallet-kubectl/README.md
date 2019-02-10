@@ -2,8 +2,8 @@ build/run ccontainer
 ----------------
 
 ```
-docker build -t onlywallet-container .
-docker run -it -p 8080:8080 onlywallet-container 
+docker build -t onlywallet-api:v1 .
+docker run -it -p 8080:8080 onlywallet-api:v2
 ```
 
 setup kubectl
