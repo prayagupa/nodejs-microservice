@@ -10,6 +10,11 @@ var http      = require('http');
 var path      = require('path');
 
 var app       = express();
+var bodyParser = require('body-parser');
+var logger = require('morgan');
+var favicon = require('serve-favicon');
+var methodOverride = require('method-override');
+var errorHandler = require('errorhandler');
 
 //var Mongoose  = require('mongoose');
 //var db        = Mongoose.createConnection('localhost', 'onlywallet');
@@ -20,17 +25,14 @@ var braintree = require("braintree");
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(app.router);
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+  app.use(errorHandler());
 }
 
 app.get('/', routes.index);

@@ -6,9 +6,11 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "braintree": "*",
+    "body-parser": "^1.18.3",
+    "braintree": "^2.15.0",
     "ejs": "*",
-    "express": "3.4.7",
+    "errorhandler": "^1.5.0",
+    "express": ">=3.11.0",
     "grunt": "~0.4.5",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-jshint": "~0.10.0",
@@ -16,8 +18,11 @@
     "grunt-contrib-qunit": "~0.4.0",
     "grunt-contrib-uglify": "~0.4.0",
     "jade": "*",
-    "mongodb": "^3.0.8",
-    "mongoose": "^5.1.2",
-    "neo4j": "~1.1"
+    "method-override": "^3.0.0",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.11",
+    "morgan": "^1.9.1",
+    "neo4j": "~1.1",
+    "serve-favicon": "^2.5.0"
   }
 }
