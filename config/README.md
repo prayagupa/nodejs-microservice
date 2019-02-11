@@ -1,5 +1,8 @@
 
 - https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
+create [k8s control panel](https://kubernetes.io/docs/concepts/#kubernetes-control-plane) on vpc1, 
+worker nodes on vpc2
+
 - https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
 
 ```bash
@@ -33,8 +36,15 @@ default       Active    7h
 kube-public   Active    7h
 kube-system   Active    7h
 
-$ kubectl get configmaps
-No resources found.
+$ kubectl get storageclass
+NAME            PROVISIONER             AGE
+gp2 (default)   kubernetes.io/aws-ebs   12h
+
+$ kubectl get configmaps -n kube-system
+NAME                                 DATA      AGE
+coredns                              1         11h
+extension-apiserver-authentication   5         11h
+kube-proxy                           1         11h
 
 $ kubectl apply -f aws-auth-cm.yaml
 configmap/aws-auth created
@@ -56,4 +66,10 @@ mapRoles:
     - system:nodes
 
 Events:  <none>
+```
+
+```bash
+$ kubectl get nodes
+NAME                         STATUS    ROLES     AGE       VERSION
+ip-10-0-0-110.ec2.internal   Ready     <none>    1m        v1.11.5
 ```

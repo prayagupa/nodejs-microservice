@@ -85,8 +85,16 @@ A Kubernetes Pod is a group of one or more Containers, tied together for the pur
 
 ```bash
 docker build -t onlywallet-api:v1 .
+
 eval $(minikube docker-env)
 kubectl run onlywallet-pod --image=onlywallet-api:v1 --port=3000
+
+# note: you can also pull from amazon elastic cloud registry(ecr)
+# docker tag onlywallet-api:v1 <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/duwamish-repository
+# aws ecr get-login --no-include-email --profile aws-work --region us-east-1
+# docker login -u AWS -p <<password>>  https://<<account id>>.dkr.ecr.us-east-1.amazonaws.com
+# docker push <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/duwamish-repository
+# kubectl apply -f deployment.yaml
 
 kubectl get deployments
 kubectl get pods

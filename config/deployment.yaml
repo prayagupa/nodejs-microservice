@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onlywallet
+  labels:
+    app: onlywallet
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: onlywallet
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: onlywallet
+    spec:
+      containers:
+      - image: <<account id>>.dkr.ecr.us-east-1.amazonaws.com/onlywallet:latest
+        imagePullPolicy: Always
+        name: onlywallet
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        env:
+        - name: name
+          value: "updupd"
+
