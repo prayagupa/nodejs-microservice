@@ -115,7 +115,23 @@ kubectl expose deployment onlywallet-pod --type=LoadBalancer
 kubectl get services
 minikube service onlywallet-pod
 
+## or kubectl apply -f config/service.yaml
+## $ kubectl get services -o wide
+NAME         TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)        AGE       SELECTOR
+kubernetes   ClusterIP      172.zz.0.1       <none>                                                                    443/TCP        19h       <none>
+onlywallet   LoadBalancer   172.zz.yyy.xxx   some_id1-some_id2.us-east-1.elb.amazonaws.com   80:30410/TCP   5m        app=onlywallet
+
+# access EXTERNAL-IP/ which is a AWS LB
+
 kubectl logs <POD-NAME=onlywallet-pod>
+```
+
+I can see the pods running once I SecureSHell the node,
+
+```bash
+[ec2-user@ip-10-0-0-110 ~]$ docker ps
+CONTAINER ID        IMAGE                                                              COMMAND                  CREATED             STATUS              PORTS               NAMES
+2a64894b19c9        <<account id>>.dkr.ecr.us-east-1.amazonaws.com/only-wallet         "node app.js"            27 minutes ago      Up 27 minutes                           k8s_onlywallet_onlywallet-8f7468988-dh8k4_default_54cc86c7-2db5-11e9-9298-0e8b7b1140de_0
 ```
 
 ![](onlywallet_kubectl_services.png)
