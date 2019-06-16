@@ -11,24 +11,24 @@ var Memcached = require('memcached');
 var memcached = new Memcached({'localhost:11211':1});
 
 function addSession(){
-  memcached.add('session-id1', 'gedifp-001', 10, function (err) {
+  memcached.add('user-id1', JSON.stringify({"session_id": "gedifp-001"}), 10, function (err) {
     if(err) {
       console.log("err adding session: " + err);
     } else {
       console.log("wrote session1 to session-server")
-      memcached.get('session-id1', function (err, data) {
+      memcached.get('user-id1', function (err, data) {
         console.log("session: " + data);
       });
     }
   });
 
-  memcached.set('session-id1', 'sjhfjs-002', 10, function (err) {
+  memcached.set('user-id1', JSON.stringify({"session_id": "sjhfjs-002"}), 10, function (err) {
     if(err) {
       console.log("err setting new session: " + err);
     } else {
       console.log("updated session2 to session-server")
-      memcached.get('session-id1', function (err, data) {
-        console.log("session: " + data);
+      memcached.get('user-id1', function (err, data) {
+        console.log("session: " + JSON.parse(data).session_id);
       });
 
     }
